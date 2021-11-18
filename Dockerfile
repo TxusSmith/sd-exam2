@@ -1,4 +1,10 @@
-From tomcat:8.0.51-jre8-alpine
-RUN rm -rf /usr/local/tomcat/webapps/*
-COPY ./target/*.war /usr/local/tomcat/webapps/ROOT.war
-CMD ["catalina.sh","run"]
+FROM ubuntu:16.04
+MAINTAINER tebannew@gmail.com	
+
+#Install package
+RUN apt-get update -y
+RUN apt-get install postgresql -y
+
+#Configuracion del puerto de postgres
+EXPOSE 5432
+CMD postgresql -m http.server 5432
